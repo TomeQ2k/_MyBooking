@@ -1,0 +1,25 @@
+@model BookingDateDto
+
+<h3>Booking</h3>
+<p class="lead">Choose your start and end date for this booking</p>
+<form method="POST">
+    <input type="hidden" asp-for="@Model.OfferId">
+    <fieldset class="form-group">
+        <label>Start date</label>
+        <input type="date" asp-for="@Model.StartDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")"
+            value="@DateTime.Now.ToString("yyyy-MM-dd")" required
+            max="@DateTime.Now.AddYears(Constants.MaxBookingDateAdvance).ToString("yyyy-MM-dd")"
+            placeholder="Start date...">
+        <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+    </fieldset>
+    <fieldset class="form-group">
+        <label>End date</label>
+        <input type="date" asp-for="@Model.EndDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")"
+            value="@DateTime.Now.ToString("yyyy-MM-dd")" required
+            max="@DateTime.Now.AddYears(Constants.MaxBookingDateAdvance).ToString("yyyy-MM-dd")"
+            placeholder="End date...">
+        <span asp-validation-for="@Model.EndDate" class="text-danger"></span>
+    </fieldset>
+    <button asp-page-handler="BookDate" type="submit" class="btn btn-outline-primary btn-block">Book
+        this date</button>
+</form>

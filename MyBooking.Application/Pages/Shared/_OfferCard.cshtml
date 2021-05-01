@@ -1,0 +1,83 @@
+@model OfferCardViewModel
+
+@{
+    bool isFollowed = Model.Offer.OfferFollows.Any(of => of.UserId == Context.GetCurrentUserId());
+}
+
+<div class="card m-2">
+    <img src="@Model.Offer.FirstPhotoUrl" alt="Offer photo" class="card-img-top img-fluid full-width">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Offer.Title</h4>
+        <div class="row text-center">
+            <div class="col-md-6 p-2">
+                <span class="text-muted">@Model.Offer.Location</span>
+                <div class="d-flex flex-row justify-content-around mt-3">
+                    <div class="row align-items-center">
+                        <i class="fas fa-dollar-sign mr-2"></i>
+                        <span class="text-muted">@Math.Round(Model.Offer.Price, 2) / night</span>
+                    </div>
+                    <div class="row align-items-center">
+                        <span>@Model.Offer.PersonsCount</span>
+                        <i class="fas fa-male ml-2"></i>
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-around mt-3">
+                    <div class="row align-items-center">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span>@Model.Offer.FollowsCount</span>
+                    </div>
+                    <div class="row align-items-center">
+                        <span>@Math.Round(Model.Offer.Rating, 1)</span>
+                        <i class="fas fa-star ml-2"></i>
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-center mt-3">
+                    <div class="row align-items-center">
+                        <span class="text-muted">Available: <strong
+                                class="text-dark">@Model.Offer.AvailableCount</strong></span>
+                        <i class="far fa-calendar-check ml-2"></i>
+                    </div>
+                </div>
+                @if (!Model.IsDetails)
+                {
+                    <hr>
+                }
+            </div>
+            <div class="col-md-6 mt-3 p-2">
+                <h5>Contact</h5>
+                <hr class="w-50">
+                <div class="col">
+                    <div class="d-inline-block mt-1">
+                        <i class="fas fa-phone-volume"></i>
+                        <phone phone-number="@Model.Offer.PhoneNumber" link-text="@Model.Offer.PhoneNumber"></phone>
+                    </div>
+                    @if (Model.Offer.EmailAddress != null)
+                    {
+                        <div class="d-inline-block mt-2">
+                            <i class="fas fa-at"></i>
+                            <email address="@Model.Offer.EmailAddress" link-text="@Model.Offer.EmailAddress"></email>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center">
+            @if (Context.IsAuthenticated())
+            {
+                <form asp-action="Follow" asp-controller="Offers" asp-route-id="@Model.Offer.Id"
+                    asp-route-isDetails="@Model.IsDetails" asp-route-isFavorites="@Model.IsFavorites" method="POST"
+                    class="w-100 mr-2">
+                    <button
+                        class="btn @(!isFollowed ? "btn-outline-success" : "btn-outline-danger") btn-outline-success btn-block">@(!isFollowed
+                    ? "Follow" : "Unfollow")</button>
+                </form>
+            }
+            @if (!Model.IsDetails)
+            {
+                <a asp-area="Offers" asp-page="/OfferDetails" asp-route-id="@Model.Offer.Id"
+                    class="btn btn-outline-info btn-block m-0">Details</a>
+            }
+        </div>
+    </div>
+</div>

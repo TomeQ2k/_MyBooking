@@ -1,0 +1,122 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-align: center;
+}
+
+#alert {
+    position: fixed;
+    bottom: 0;
+    right: 3rem;
+}
+
+input[type=checkbox] {
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+}
+
+.image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+
+.image img {
+    position: absolute;
+}
+
+.img-miniature {
+    width: 125px;
+    height: 125px;
+}
+
+/* SECTIONS */
+
+#home {
+    padding: 3rem 0;
+}
+
+#errorPage {
+    padding: 3rem 0;
+}
+
+#login {
+    padding: 3rem 0;
+}
+
+#register {
+    padding: 3rem 0;
+}
+
+#resetPassword {
+    padding: 3rem 0;
+}
+
+#forgotPassword {
+    padding: 3rem 0;
+}
+
+#accountConfirmed {
+    padding: 3rem 0;
+}
+
+#profile {
+    padding: 3rem 0;
+}
+
+#offerDetails {
+    padding: 3rem 0;
+}
+
+#createOffer {
+    padding: 3rem 0;
+}
+
+#editOffer {
+    padding: 3rem 0;
+}
+
+#bookingSummary {
+    padding: 3rem 0;
+}
+
+#myOffers {
+    padding: 3rem 0;
+}
+
+#favorites {
+    padding: 3rem 0;
+}
+
+#bookings {
+    padding: 3rem 0;
+}
+
+#cart {
+    padding: 3rem 0;
+}
+
+#orders {
+    padding: 3rem 0;
+}
+
+#stats {
+    padding: 3rem 0;
+}
+
+#accessDenied {
+    padding: 3rem 0;
+}

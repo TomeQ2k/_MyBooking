@@ -1,0 +1,21 @@
+@model ChangeEmailDto
+
+<div class="col-md-4 mt-3">
+    <div class="card">
+        <div class="card-header">
+            CHANGE EMAIL ADDRESS
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <fieldset class="form-group">
+                    <label>New email address</label>
+                    <input asp-for="@Model.NewEmail" type="email" class="form-control"
+                        placeholder="New email address...">
+                    <span asp-validation-for="@Model.NewEmail" class="text-danger"></span>
+                </fieldset>
+                <button asp-page-handler="ChangeEmail" type="submit" class="btn btn-outline-success btn-block">Save
+                    changes</button>
+            </form>
+        </div>
+    </div>
+</div>

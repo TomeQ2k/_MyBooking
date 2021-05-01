@@ -1,0 +1,152 @@
+@page "/Offers/{id}/Edit"
+@model EditOfferModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="createOffer">
+    <div class="container">
+        <h1>Edit offer</h1>
+        <div class="d-flex flex-row flex-wrap mb-3">
+            @* @if (Model.EditOfferPhotosInput != null)
+            { *@
+                @foreach (var photo in Model.EditOfferPhotosInput.OfferPhotos)
+                {
+                    <form method="POST">
+                        <div class="col text-center">
+                            <img src="@photo.Url" alt="Offer photo" class="img-fluid img-thumbnail img-miniature">
+                            <button asp-page-handler="RemovePhoto" asp-route-offerId="@Model.EditOfferInput.Id"
+                        asp-route-photoId="@photo.Id" type="submit" class="btn btn-outline-danger btn-block p-1">
+                                <i class="fa fa-trash fa-2x"></i></button>
+                        </div>
+                    </form>
+                }
+            @* } *@
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.EditOfferInput.Id">
+            <hr>
+            <div class="row">
+                <div class="col-md-6 d-flex flex-column justify-content-between">
+                    <fieldset class="form-group">
+                        <label>Short description</label>
+                        <input asp-for="@Model.EditOfferInput.Title" type="text" class="form-control"
+                            maxlength="@Constants.MaxTitleLength" placeholder="Short description...">
+                        <span asp-validation-for="@Model.EditOfferInput.Title" class="text-danger"></span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Description</label>
+                        <textarea asp-for="@Model.EditOfferInput.OfferDetails.Description" type="text"
+                            class="form-control" placeholder="Description..." rows="20"
+                            maxlength="@Constants.MaxDescriptionLength"></textarea>
+                        <span asp-validation-for="@Model.EditOfferInput.OfferDetails.Description"
+                            class="text-danger"></span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Location</label>
+                        <input asp-for="@Model.EditOfferInput.Location" type="text" class="form-control"
+                            maxlength="@Constants.MaxLocationLength" placeholder="Location...">
+                        <span asp-validation-for="@Model.EditOfferInput.Location" class="text-danger"></span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Total offers count</label>
+                        <input asp-for="@Model.EditOfferInput.TotalCount" type="number" class="form-control"
+                            value="@Model.EditOfferInput.TotalCount" min="1" max="@Constants.MaxOffersCount"
+                            placeholder="Total offers count...">
+                        <span asp-validation-for="@Model.EditOfferInput.TotalCount" class="text-danger"></span>
+                    </fieldset>
+                </div>
+                <div class="col-md-6">
+                    <fieldset class="form-group">
+                        <label>Price per night [$]</label>
+                        <input asp-for="@Model.EditOfferInput.Price" type="number" min="0" max="@Constants.MaxPrice"
+                            step="0.01" class="form-control" placeholder="Price...">
+                        <span asp-validation-for="@Model.EditOfferInput.Price" class="text-danger"></span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Rooms count</label>
+                        <input asp-for="@Model.EditOfferInput.OfferDetails.RoomsCount" type="number"
+                            class="form-control" value="@Model.EditOfferInput.OfferDetails.RoomsCount" min="1"
+                            max="@Constants.MaxRoomsCount" placeholder="Rooms count...">
+                        <span asp-validation-for="@Model.EditOfferInput.OfferDetails.RoomsCount"
+                            class="text-danger"></span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Persons count</label>
+                        <input asp-for="@Model.EditOfferInput.OfferDetails.PersonsCount" type="number"
+                            class="form-control" value="@Model.EditOfferInput.OfferDetails.PersonsCount" min="1"
+                            max="@Constants.MaxPersonsCount" placeholder="Persons count...">
+                        <span asp-validation-for="@Model.EditOfferInput.OfferDetails.PersonsCount"
+                            class="text-danger"></span>
+                    </fieldset>
+                    <div class="d-flex flex-row justify-content-between">
+                        <fieldset class="form-group">
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.HasBathroom" class="m-2" type="checkbox">
+                            <label>Has bathroom?</label>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Has kitchen?</label>
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.HasKitchen" class="m-2" type="checkbox">
+                        </fieldset>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between">
+                        <fieldset class="form-group">
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.HasWifi" class="m-2" type="checkbox">
+                            <label>Has WIFI?</label>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Has TV?</label>
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.HasTV" class="m-2" type="checkbox">
+                        </fieldset>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between">
+                        <fieldset class="form-group">
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.HasBalcony" class="m-2" type="checkbox">
+                            <label>Has balcony?</label>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Has minibar?</label>
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.HasMinibar" class="m-2" type="checkbox">
+                        </fieldset>
+                    </div>
+                    <div class="col">
+                        <fieldset class="form-group">
+                            <label>Accommodation type</label>
+                            <select class="form-control" asp-for="@Model.EditOfferInput.OfferDetails.AccommodationType">
+                                <option value="0">Without food</option>
+                                <option value="1">Only breakfast</option>
+                                <option value="2">Breakfast & dinner</option>
+                                <option value="3">All inclusive</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Photos [maximum count: @Constants.MaxPhotosCount]</label>
+                            <input asp-for="@Model.EditOfferInput.OfferPhotos" type="file" class="form-control p-2"
+                                multiple>
+                            <span asp-validation-for="@Model.EditOfferInput.OfferPhotos" class="text-danger"></span>
+                        </fieldset>
+                        <div class=" form-group">
+                            <label>Phone number</label>
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.PhoneNumber" type="tel"
+                                class="form-control" placeholder="Phone number...">
+                            <span asp-validation-for="@Model.EditOfferInput.OfferDetails.PhoneNumber"
+                                class="text-danger"></span>
+                        </div>
+                        <fieldset class="form-group">
+                            <label>Email address</label>
+                            <input asp-for="@Model.EditOfferInput.OfferDetails.EmailAddress" type="email"
+                                class="form-control" placeholder="Email address...">
+                            <span asp-validation-for="@Model.EditOfferInput.OfferDetails.EmailAddress"
+                                class="text-danger"></span>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <button asp-page-handler="UpdateOffer" type="submit" class="btn btn-outline-primary btn-block">Update
+                offer</button>
+            <a asp-area="Offers" asp-page="MyOffers" class="btn btn-outline-danger btn-block mt-3">Cancel</a>
+        </form>
+    </div>
+</section>
+
+<partial name="_AlertPartial" model="@Alertify.Alert" />

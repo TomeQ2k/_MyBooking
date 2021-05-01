@@ -1,0 +1,20 @@
+@model ChangeUsernameDto
+
+<div class="col-md-4 mt-3">
+    <div class="card">
+        <div class="card-header">
+            CHANGE USERNAME
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <fieldset class="form-group">
+                    <label>Your username</label>
+                    <input asp-for="@Model.NewUsername" type="text" class="form-control" placeholder="Your username...">
+                    <span asp-validation-for="@Model.NewUsername" class="text-danger"></span>
+                </fieldset>
+                <button asp-page-handler="ChangeUsername" type="submit" class="btn btn-outline-success btn-block">Save
+                    changes</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+@model OpinionDto
+
+<div class="card p-2">
+    <div class="card-header">
+        <div class="col">
+            <h5>@Model.Username</h5>
+            <div class="d-flex flex-row justify-content-between">
+                <div class="row align-items-center">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    @if (i <= Model.Rating)
+                    {
+                        <i class="fas fa-star mr-2"></i>
+                    }
+                    else
+                    {
+                        <i class="far fa-star mr-2"></i>
+                    }
+                }
+                    <span>@Math.Round(Model.Rating, 1)</span>
+                </div>
+                @if (Model.UserId == Context.GetCurrentUserId())
+                {
+                    <form method="POST">
+                        <button asp-page-handler="DeleteOpinion" asp-route-opinionId="@Model.Id" asp-route-offerId="@Model.OfferId" type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>
+                }
+                <div class="row align-items-center">
+                    <span class="text-muted">@Model.DateCreated.ToString("yyyy-MM-dd")</span>
+                    <i class="fas fa-clock ml-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">@Model.Text</p>
+    </div>
+</div>

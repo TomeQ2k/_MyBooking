@@ -1,0 +1,61 @@
+@model OffersFilterParams
+
+<h3 class="mb-3">Filters</h3>
+<form method="POST">
+    <input type="hidden" asp-for="@Model.MinPrice">
+    <fieldset class="form-group">
+        <label>Start date</label>
+        <input type="date" asp-for="@Model.StartDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")"
+            max="@DateTime.Now.AddYears(Constants.MaxBookingDateAdvance).ToString("yyyy-MM-dd")"
+            placeholder="Start date...">
+    </fieldset>
+    <fieldset class="form-group">
+        <label>End date</label>
+        <input type="date" asp-for="@Model.EndDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")"
+            max="@DateTime.Now.AddYears(Constants.MaxBookingDateAdvance).ToString("yyyy-MM-dd")"
+            placeholder="End date...">
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Location</label>
+        <input type="text" asp-for="@Model.Location" maxlength="@Constants.MaxLocationLength" class="form-control"
+            placeholder="Location...">
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Max price per night [$]</label>
+        <input asp-for="@Model.MaxPrice" type="number" min="0" max="@Constants.MaxPrice" step="0.01"
+            class="form-control" placeholder="Price...">
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Sort by</label>
+        <select class="form-control" asp-for="@Model.SortType">
+            <option value="0">Date &darr;</option>
+            <option value="1">Date &uarr;</option>
+            <option value="2">Price &darr;</option>
+            <option value="3">Price &uarr;</option>
+            <option value="4">Rating &darr;</option>
+            <option value="5">Available now slots &darr;</option>
+            <option value="6">Follows &darr;</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Accommodation type</label>
+        <select class="form-control" asp-for="@Model.AccommodationType">
+            <option value="-1">All</option>
+            <option value="0">Without food</option>
+            <option value="1">Only breakfast</option>
+            <option value="2">Breakfast & dinner</option>
+            <option value="3">All inclusive</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Rooms count</label>
+        <input asp-for="@Model.RoomsCount" type="number" class="form-control" min="1" max="@Constants.MaxRoomsCount"
+            placeholder="Rooms count...">
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Persons count</label>
+        <input asp-for="@Model.PersonsCount" type="number" class="form-control" min="1" max="@Constants.MaxPersonsCount"
+            placeholder="Persons count...">
+    </fieldset>
+    <button asp-page-handler="FilterOffers" asp-route-updateParams="@true" type="submit" class="btn btn-outline-secondary btn-block">Filter</button>
+</form>

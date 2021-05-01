@@ -1,0 +1,9 @@
+@model BookingCartItemDto
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.BookedDate.OfferTitle</td>
+    <td>@Model.BookedDate.StartDate.ToShortDateString()</td>
+    <td>@Model.BookedDate.EndDate.ToShortDateString()</td>
+    <td>@Model.BookedDate.TotalPrice</td>
+</tr>

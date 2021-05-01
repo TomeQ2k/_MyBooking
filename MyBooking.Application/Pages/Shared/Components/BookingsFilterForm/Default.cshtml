@@ -1,0 +1,62 @@
+@model BookingsFilterParams
+
+<form method="POST">
+    <div class="row">
+        <div class="col">
+            <fieldset class="form-group">
+                <label>Start date</label>
+                <input type="date" asp-for="@Model.StartDate" class="form-control"
+                    max="@DateTime.Now.AddYears(Constants.MaxBookingDateAdvance).ToString("yyyy-MM-dd")"
+                    placeholder="Start date...">
+            </fieldset>
+        </div>
+        <div class="col">
+            <fieldset class="form-group">
+                <label>End date</label>
+                <input type="date" asp-for="@Model.EndDate" class="form-control"
+                    max="@DateTime.Now.AddYears(Constants.MaxBookingDateAdvance).ToString("yyyy-MM-dd")"
+                    placeholder="End date...">
+            </fieldset>
+        </div>
+        <div class="col">
+            <fieldset class="form-group">
+                <label>Confirm status</label>
+                <select class="form-control" asp-for="@Model.ConfirmStatus">
+                    <option value="0">All</option>
+                    <option value="1">Confirmed</option>
+                    <option value="2">Not confirmed</option>
+                </select>
+            </fieldset>
+        </div>
+        <div class="col">
+            <fieldset class="form-group">
+                <label>Date status</label>
+                <select class="form-control" asp-for="@Model.DateStatus">
+                    <option value="0">All</option>
+                    <option value="1">Incoming</option>
+                    <option value="2">Expired</option>
+                </select>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <fieldset class="form-group">
+                <label>Booked as</label>
+                <select class="form-control" asp-for="@Model.Type">
+                    <option value="0">All</option>
+                    <option value="1">Customer</option>
+                    <option value="2">Dealer</option>
+                </select>
+            </fieldset>
+        </div>
+        <div class="col my-auto">
+            <button asp-page-handler="FilterBookings" type="submit"
+                class="btn btn-outline-secondary btn-block text-center">Filter</button>
+        </div>
+        <div class="col my-auto">
+            <a asp-area="Bookings" asp-page="/MyBookings" asp-route-clearFilters=@true
+                class="btn btn-outline-danger btn-block">Clear</a>
+        </div>
+    </div>
+</form>

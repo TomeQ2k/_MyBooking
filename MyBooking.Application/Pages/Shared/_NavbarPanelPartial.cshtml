@@ -1,0 +1,55 @@
+@inject IRolesService RolesService
+
+<div class="collapse navbar-collapse bg-primary" id="navigation-bar">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-2">
+        <li class="nav-item">
+            <a asp-page="/Index" class="nav-link">Home<span class="sr-only">(current)</span></a>
+        </li>
+        @if (Context.IsAuthenticated())
+        {
+            <li class="nav-item">
+                <a asp-area="Offers" asp-page="/Favorites" class="nav-link">Favorites</a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Bookings" asp-page="/MyBookings" class="nav-link">My bookings</a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Offers" asp-page="/MyOffers" class="nav-link">My offers</a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Orders" asp-page="/Orders" class="nav-link">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Profile" asp-page="/Profile" class="nav-link">Profile</a>
+            </li>
+            @if (await RolesService.IsPermitted(Context.GetCurrentUserId(), RoleType.Admin))
+            {
+                <li class="nav-item">
+                    <a asp-area="Stats" asp-page="/Stats" class="nav-link">Stats</a>
+                </li>
+            }
+        }
+        <li class="nav-item">
+            <a asp-area="Cart" asp-page="/Cart" class="nav-link"><i class="fas fa-shopping-cart fa-2x"></i></a>
+        </li>
+        @if (Context.IsAuthenticated())
+        {
+            <li class="nav-item">
+                <a asp-area="Offers" asp-page="/CreateOffer" class="nav-link"><i class="fas fa-plus fa-2x"></i></a>
+            </li>
+        }
+    </ul>
+
+    @if (Context.IsAuthenticated())
+    {
+        @await Component.InvokeAsync("LogoutForm")
+    }
+    else
+    {
+        <div class="row">
+            <a asp-area="Auth" asp-page="/Login" class="btn btn-outline-info navbar-btn my-2 my-sm-0 mx-2">Login</a>
+            <a asp-area="Auth" asp-page="/Register"
+                class="btn btn-outline-secondary navbar-btn my-2 my-sm-0 mx-2">Register</a>
+        </div>
+    }
+</div>

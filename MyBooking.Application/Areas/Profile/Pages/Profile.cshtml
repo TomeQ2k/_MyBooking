@@ -1,0 +1,23 @@
+@page "/Profile"
+@model ProfileModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="profile">
+    <div class="container">
+        <div class="col">
+            <h1>Your profile</h1>
+            <hr>
+            <div class="row">
+                @await Component.InvokeAsync("ChangeUsernameForm", new {input = Model.ChangeUsernameInput})
+
+                @await Component.InvokeAsync("ChangePasswordForm", new {input = Model.ChangePasswordInput})
+
+                @await Component.InvokeAsync("ChangeEmailForm", new {input = Model.ChangeEmailInput})
+            </div>
+        </div>
+    </div>
+</section>
+
+<partial name="_AlertPartial" model="@Alertify.Alert" />

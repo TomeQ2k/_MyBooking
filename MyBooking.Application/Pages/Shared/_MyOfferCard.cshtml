@@ -1,0 +1,34 @@
+@model MyOfferDto
+
+<div class="card p-3">
+    <img src="@Model.FirstPhotoUrl" alt="Offer photo" class="img-fluid img-thumbnail full-width">
+    <div class="card-header">
+        <p class="lead p-2">@Model.Title - ID #@Model.Id</p>
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between align-items-center flex-wrap">
+            <span>Total: @Model.TotalCount</span>
+            <span>Available: @Model.AvailableCount</span>
+            <span>Booked: @Model.BookedDatesCount</span>
+            <span class="text-muted">Created: @Model.DateCreated.ToShortDateString()</span>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <a asp-area="Offers" asp-page="/OfferDetails" asp-route-id="@Model.Id"
+                    class="btn btn-outline-info m-1">Details</a>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Offers" asp-page="/EditOffer" asp-route-id="@Model.Id"
+                    class="btn btn-outline-primary m-1">Edit</a>
+            </div>
+            <div class="col-md-4">
+                <form method="POST">
+                    <button asp-page-handler="DeleteOffer" asp-route-id="@Model.Id" type="submit"
+                        class="btn btn-outline-danger m-1">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

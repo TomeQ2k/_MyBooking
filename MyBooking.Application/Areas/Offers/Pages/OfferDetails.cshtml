@@ -1,0 +1,93 @@
+@page "/Offers/{id}"
+@model OfferDetailsModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="offerDetails">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <partial name="_OfferCard" model="@(new OfferCardViewModel(Model.OfferCardModel,isDetails: true))" />
+                <div class="col mt-3">
+                    @await Component.InvokeAsync("BookingForm", new {input = Model.BookingDateModel ?? new
+                    BookingDateDto{ OfferId = Model.Offer.Id }})
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="photosGalleryCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach (var photo in Model.Offer.OfferPhotos)
+                        {
+                            <div
+                                class="carousel-item @(photo == Model.Offer.OfferPhotos.First() ? "active" : string.Empty)">
+                                <img src="@photo.Url" class="img-thumbnail img-fluid full-width" alt="Offer photo">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#photosGalleryCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#photosGalleryCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="col mt-3">
+                    <h3>Description</h3>
+                    <p class="border rounded p-3">@Model.OfferDetails.Description</p>
+                    <h3>Details</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Rooms count
+                            <span class="badge badge-primary badge-pill">@Model.OfferDetails.RoomsCount</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Has bathroom?
+                            <i class="fas fa-2x @(Model.OfferDetails.HasBathroom ? "fa-check" : "fa-times")">
+                            </i>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Has kitchen?
+                            <i class="fas fa-2x @(Model.OfferDetails.HasKitchen ? "fa-check" : "fa-times")">
+                            </i>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Has WIFI?
+                            <i class="fas fa-2x @(Model.OfferDetails.HasWifi ? "fa-check" : "fa-times")">
+                            </i>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Has balcony?
+                            <i class="fas fa-2x @(Model.OfferDetails.HasBalcony ? "fa-check" : "fa-times")">
+                            </i>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Has TV?
+                            <i class="fas fa-2x @(Model.OfferDetails.HasTV ? "fa-check" : "fa-times")">
+                            </i>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Has minibar?
+                            <i class="fas fa-2x @(Model.OfferDetails.HasMinibar ? "fa-check" : "fa-times")">
+                            </i>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Accommodation type
+                            <span class="badge badge-primary badge-pill">
+                                @Model.GetAccommodationType()
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            @await Component.InvokeAsync("Opinions", new {model = new OpinionsViewModel(Model.Offer.Opinions,
+            Model.CreateOpinionModel ?? new CreateOpinionDto { OfferId = Model.Offer.Id } )})
+        </div>
+    </div>
+</section>
+
+<partial name="_AlertPartial" model="@Alertify.Alert" />

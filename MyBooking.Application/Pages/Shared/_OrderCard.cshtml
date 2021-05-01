@@ -1,0 +1,16 @@
+@model BookingOrderDto
+
+<div class="card text-center mt-3">
+    <div class="card-header">
+        #@Model.Id
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Description</h5>
+        <p class="card-text text-muted">@Model.DateCreated.ToShortDateString()</p>
+        <p class="card-text">Booking #Id: @Model.BookingId</p>
+        <p class="card-text">Offer #Id: @Model.OfferId</p>
+    </div>
+    <div class="card-footer text-primary">
+        <span>Total: @Model.TotalPrice $</span>
+    </div>
+</div>

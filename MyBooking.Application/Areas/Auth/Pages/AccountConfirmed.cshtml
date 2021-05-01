@@ -1,0 +1,16 @@
+@page "/Auth/ConfirmAccount"
+@model AccountConfirmedModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="accountConfirmed">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col">
+                <h3>Account has been activated. Now you can sign in!</h3>
+                <a asp-area="Auth" asp-page="/Login" class="btn btn-outline-info btn-block mt-3">Sign in</a>
+            </div>
+        </div>
+    </div>
+</section>

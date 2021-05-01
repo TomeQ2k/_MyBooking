@@ -1,0 +1,5 @@
+<li class="page-item border border-primary">
+    <button type="submit" class="page-link" asp-page-handler=@ViewData[Constants.ActionName]
+        asp-route-pageNumber=@ViewData[Constants.PageNumber]
+        asp-route-updateParams=@false>@ViewData[Constants.PageNumber]</button>
+</li>

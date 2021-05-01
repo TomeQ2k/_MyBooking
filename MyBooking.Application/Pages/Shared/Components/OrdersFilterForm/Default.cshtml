@@ -1,0 +1,14 @@
+@model BookingOrdersFilterParams
+
+<h3 class="mb-3">Filters</h3>
+<form method="POST">
+    <fieldset class="form-group">
+        <label>Ordered as</label>
+        <select class="form-control" asp-for="@Model.Type">
+            <option value="0">All</option>
+            <option value="1">Customer</option>
+            <option value="2">Dealer</option>
+        </select>
+    </fieldset>
+    <button asp-page-handler="FilterOrders" type="submit" class="btn btn-outline-secondary btn-block">Filter</button>
+</form>

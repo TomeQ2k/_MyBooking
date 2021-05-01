@@ -1,0 +1,23 @@
+@page "/MyOffers"
+@model MyOffersModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="myOffers">
+    <div class="container">
+        <div class="col-md-12">
+            <h1>My offers</h1>
+            <hr>
+            @foreach (var myOffer in Model.MyOffers)
+            {
+                <partial name="_MyOfferCard" model="@myOffer" />
+            }
+        </div>
+    </div>
+
+    <form method="POST" class="d-flex flex-row justify-content-end mt-3">
+        <partial name="_PaginationPartial" model=@(PaginationViewModel.Build<MyOfferDto>(Model.MyOffers,
+            "FilterOffers")) />
+    </form>
+</section>

@@ -1,0 +1,18 @@
+@model CreateOpinionDto
+
+<form method="POST">
+    <input type="hidden" asp-for="@Model.OfferId">
+    <fieldset class="form-group">
+        <textarea asp-for="@Model.Text" type="text" class="form-control" placeholder="Opinion content..." rows="20"
+            maxlength="@Constants.MaxOpinionLength"></textarea>
+        <span asp-validation-for="@Model.Text" class="text-danger"></span>
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Your rating</label>
+        <input asp-for="@Model.Rating" type="number" class="form-control" value="5" min="1" max="5"
+            placeholder="Your rating...">
+        <span asp-validation-for="@Model.Rating" class="text-danger"></span>
+    </fieldset>
+    <button asp-page-handler="CreateOpinion" type="submit" class="btn btn-outline-primary btn-block">Create
+        opinion</button>
+</form>

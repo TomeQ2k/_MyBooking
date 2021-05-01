@@ -1,0 +1,27 @@
+@model ChangePasswordDto
+
+<div class="col-md-4 mt-3">
+    <div class="card">
+        <div class="card-header p-3 bg-primary text-light">
+            CHANGE PASSWORD
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <fieldset class="form-group">
+                    <label>Old password</label>
+                    <input asp-for="@Model.OldPassword" type="password" class="form-control"
+                        placeholder="Enter old password...">
+                    <span asp-validation-for="@Model.OldPassword" class="text-danger"></span>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>New password</label>
+                    <input asp-for="@Model.NewPassword" type="password" class="form-control"
+                        placeholder="Enter new password...">
+                    <span asp-validation-for="@Model.NewPassword" class="text-danger"></span>
+                </fieldset>
+                <button asp-page-handler="ChangePassword" type="submit" class="btn btn-outline-success btn-block">Save
+                    changes</button>
+            </form>
+        </div>
+    </div>
+</div>

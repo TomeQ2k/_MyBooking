@@ -1,0 +1,54 @@
+@page "/Cart"
+@model CartModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="cart">
+    <div class="container">
+        <div class="col">
+            <h1 class="mb-3">Booking cart - @Model.BookingCartItems.Count bookings</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#ID</th>
+                            <th>Offer title</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Price [$]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bookingCartItem in Model.BookingCartItems)
+                        {
+                            <partial name="_BookingCartItemCard" model="@bookingCartItem" />
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-right">Total price [$]</td>
+                            <td class="text-right">@Model.BookingCartItems.Select(b => b.BookedDate.TotalPrice).Sum()
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            @if (Model.BookingCartItems?.Count > 0)
+            {
+                <form method="POST">
+                    @if (!HttpContext.IsAuthenticated())
+                    {
+                        <fieldset class="form-group">
+                            <label>Type email address where your order details will be sent</label>
+                            <input type="email" asp-for="@Model.CheckoutOrderModel.AnonymousEmail" class="form-control"
+                                required>
+                        </fieldset>
+                    }
+                    <button asp-page-handler="Checkout" type="submit"
+                        class="btn btn-outline-primary btn-block">Checkout</button>
+                </form>
+            }
+        </div>
+    </div>
+</section>

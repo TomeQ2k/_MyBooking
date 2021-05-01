@@ -1,0 +1,44 @@
+@model BookedDateDto
+
+<div class="card text-center mt-3">
+    <div class="card-header">
+        #@Model.Id
+    </div>
+    <div class="card-body">
+        @if (Model.UserId != Context.GetCurrentUserId())
+        {
+            <p class="card-text text-info">YOU ARE OWNER OF THIS OFFER</p>
+        }
+        <h5 class="card-title">@Model.OfferTitle</h5>
+        <p class="card-text text-muted">@Model.Location</p>
+        <p class="card-text text">Status:
+            @if (Model.IsConfirmed)
+            {
+                <span class="text-success">Confirmed</span>
+            }
+            else
+            {
+                <span class="text-danger">Not confirmed</span>
+            }
+        </p>
+        <p class="card-text">From: @Model.StartDate.ToShortDateString()</p>
+        <p class="card-text">To: @Model.EndDate.ToShortDateString()</p>
+        <div class="d-flex flex-row justify-content-around">
+            <a asp-area="Offers" asp-page="/OfferDetails" asp-route-id="@Model.OfferId"
+                class="btn btn-outline-info">Offer details</a>
+            @if (Model.EndDate > DateTime.Now)
+            {
+                <form method="POST">
+                    <button asp-page-handler="CancelBooking" asp-route-bookingId="@Model.Id" type="submit" class="btn btn-outline-danger">Cancel</button>
+                </form>
+            }
+        </div>
+    </div>
+    <div class="card-footer text-primary">
+        <span>Total: @Model.TotalPrice $</span>
+        @if (Model.EndDate < DateTime.Now)
+        {
+            <span class="text-danger">Booking expired</span>
+        }
+    </div>
+</div>

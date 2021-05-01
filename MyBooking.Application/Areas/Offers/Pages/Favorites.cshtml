@@ -1,0 +1,28 @@
+@page "/Favorites"
+@model FavoritesModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="favorites">
+    <div class="container">
+        <h1>Favorites</h1>
+        <div class="row">
+            <div class="col-md-4">
+                @await Component.InvokeAsync("OffersFilterForm", new {filterParams = Model.Params})
+                <a asp-area="Offers" asp-page="/Favorites" asp-route-clearFilters=@true
+                    class="btn btn-outline-danger btn-block mt-2">Clear</a>
+            </div>
+            <div class="col-md-8">
+                @foreach (var favoriteOffer in Model.FavoriteOffers)
+                {
+                    <partial name="_OfferCard" model="@(new OfferCardViewModel(favoriteOffer, isFavorites: true))" />
+                }
+            </div>
+        </div>
+
+        <form method="POST" class="d-flex flex-row justify-content-end mt-3">
+            <partial name="_PaginationPartial" model=@(PaginationViewModel.Build<OfferListDto>(Model.FavoriteOffers,
+                "FilterOffers")) />
+        </form>
+</section>

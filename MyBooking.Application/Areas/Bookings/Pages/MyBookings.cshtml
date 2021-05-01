@@ -1,0 +1,23 @@
+@page "/Bookings"
+@model MyBookingsModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="bookings">
+    <div class="container">
+        <h1>My bookings</h1>
+        @await Component.InvokeAsync("BookingsFilterForm", new {filterParams = Model.Params})
+        <div class="col mt-3">
+            @foreach (var booking in Model.MyBookings)
+            {
+                <partial name="_BookingCard" model="@booking" />
+            }
+        </div>
+    </div>
+
+    <form method="POST" class="d-flex flex-row justify-content-end mt-3">
+        <partial name="_PaginationPartial" model=@(PaginationViewModel.Build<BookedDateDto>(Model.MyBookings,
+            "FilterBookings")) />
+    </form>
+</section>

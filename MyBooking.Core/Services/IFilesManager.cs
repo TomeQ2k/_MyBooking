@@ -13,6 +13,5 @@ namespace MyBooking.Core.Services
 
         void Delete(string path);
         void DeleteDirectory(string path, bool isRecursive = true);
-        void DeleteByFullPath(string fullPath);
     }
 }

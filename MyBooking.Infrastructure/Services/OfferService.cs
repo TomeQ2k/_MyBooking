@@ -61,7 +61,7 @@ namespace MyBooking.Infrastructure.Services
             {
                 var uploadedPhotos = await filesManager.Upload(offerPhotos, $"offers/{offer.Id}");
                 uploadedPhotos.ToList().ForEach(photo =>
-                    offer.OfferPhotos.Add(OfferPhoto.Create<OfferPhoto>(photo.Url, photo.Path).SetOfferId(offer.Id)));
+                    offer.OfferPhotos.Add(OfferPhoto.Create<OfferPhoto>(photo.Path).SetOfferId(offer.Id)));
             }
 
             return await database.Complete();
@@ -89,7 +89,7 @@ namespace MyBooking.Infrastructure.Services
             {
                 var uploadedPhotos = await filesManager.Upload(offerPhotos, $"offers/{offer.Id}");
                 uploadedPhotos.ToList().ForEach(photo =>
-                    offer.OfferPhotos.Add(OfferPhoto.Create<OfferPhoto>(photo.Url, photo.Path).SetOfferId(offer.Id)));
+                    offer.OfferPhotos.Add(OfferPhoto.Create<OfferPhoto>(photo.Path).SetOfferId(offer.Id)));
             }
 
             database.OfferRepository.Update(offer);
@@ -143,7 +143,7 @@ namespace MyBooking.Infrastructure.Services
                 return false;
             }
 
-            filesManager.DeleteByFullPath(photo.Path);
+            filesManager.Delete(photo.Path);
 
             return true;
         }

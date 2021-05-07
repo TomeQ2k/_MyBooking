@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AutoMapper;
+using MyBooking.Core.Helpers;
 using MyBooking.Core.Models.Domain;
 using MyBooking.Core.Models.Dtos;
 
@@ -45,7 +46,8 @@ namespace MyBooking.Core.Mapper
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(o => o.User.Username))
                 .ForMember(dest => dest.Rating, opt => opt.MapFrom(o => o.OfferRate.Rating));
 
-            CreateMap<OfferPhoto, OfferPhotoDto>();
+            CreateMap<OfferPhoto, OfferPhotoDto>()
+                .ForMember(dest => dest.Url, opt => opt.MapFrom(op => StorageLocation.BuildLocation(op.Path)));
 
             CreateMap<BookedDate, BookedDateDto>()
                 .ForMember(dest => dest.OfferTitle, opt => opt.MapFrom(bd => bd.Offer.Title))

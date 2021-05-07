@@ -39,7 +39,7 @@ namespace MyBooking.Core.Models.Domain
             => Opinions.Any() ? Opinions.Select(o => o.OfferRate.Rating).Sum() / Opinions.Count : 0;
 
         public string GetFirstPhotoUrl()
-            => OfferPhotos.Any() ? OfferPhotos.FirstOrDefault().Url : null;
+            => StorageLocation.BuildLocation(OfferPhotos.Any() ? OfferPhotos.FirstOrDefault().Path : null);
 
         public int GetAvailableCount(DateTime startDate, DateTime endDate)
         {

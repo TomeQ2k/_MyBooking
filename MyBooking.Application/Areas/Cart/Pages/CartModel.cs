@@ -11,6 +11,7 @@ using MyBooking.Core.Helpers;
 using MyBooking.Core.Models.Dtos;
 using MyBooking.Core.Services;
 using MyBooking.Infrastructure.Services;
+using Serilog;
 
 namespace MyBooking.Application.Areas.Cart.Pages
 {
@@ -66,7 +67,10 @@ namespace MyBooking.Application.Areas.Cart.Pages
                     order.TotalPrice, order.OrderDetails.StartDate, order.OrderDetails.EndDate, order.OrderDetails.Phone,
                     order.OrderDetails.ContactEmail, order.OrderDetails.Location
                 )))
+                {
+                    Log.Information($"User #{HttpContext.GetCurrentUserId()} completed order for offer {order.OrderDetails.OfferTitle} [Order #{order.Id}]");
                     return (IActionResult)RedirectToPage("/MyBookings", new { area = "Bookings" });
+                }
 
                 Alertify.Push("Order has been completed but email cannot be sent. Please contact MyBooking team", AlertType.Warning);
                 return await this.OnGetAsync();

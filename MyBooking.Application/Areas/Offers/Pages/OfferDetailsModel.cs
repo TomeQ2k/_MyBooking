@@ -10,6 +10,7 @@ using MyBooking.Core.Models.Dtos;
 using MyBooking.Core.Services;
 using MyBooking.Core.Services.ReadOnly;
 using MyBooking.Infrastructure.Services;
+using Serilog;
 
 namespace MyBooking.Application.Areas.Offers.Pages
 {
@@ -71,9 +72,14 @@ namespace MyBooking.Application.Areas.Offers.Pages
 
             var bookedDate = await bookingService.BookDate(bookingDateModel.StartDate, bookingDateModel.EndDate, offerId);
 
-            return bookedDate != null
-                ? (IActionResult)RedirectToPage("/BookingSummary", new { area = "Bookings", id = bookedDate.Id })
-                : await this.OnGetAsync(offerId);
+            if (bookedDate != null)
+            {
+                Log.Information($"User #{HttpContext.GetCurrentUserId()} booked offer #{offerId} from {bookingDateModel.StartDate.ToShortDateString()} to {bookingDateModel.EndDate.ToShortDateString()}");
+
+                return (IActionResult)RedirectToPage("/BookingSummary", new { area = "Bookings", id = bookedDate.Id });
+            }
+
+            return await this.OnGetAsync(offerId);
         }
 
         public async Task<IActionResult> OnPostCreateOpinionAsync([Bind] CreateOpinionDto createOpinionModel)

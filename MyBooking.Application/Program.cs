@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ namespace MyBooking.Application
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
@@ -40,7 +41,8 @@ namespace MyBooking.Application
 
                     context.Database.Migrate();
 
-                    databaseManager.Seed();
+                    await databaseManager.Seed();
+                    Log.Information("Database seed completed");
 
                     host.Run();
                 }

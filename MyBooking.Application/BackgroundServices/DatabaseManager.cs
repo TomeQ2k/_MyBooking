@@ -1,4 +1,4 @@
-using System.Linq;
+using System.Threading.Tasks;
 using MyBooking.Application.BackgroundServices.Interfaces;
 using MyBooking.Core.Helpers;
 using MyBooking.Core.Services;
@@ -14,19 +14,17 @@ namespace MyBooking.Application.BackgroundServices
             this.rolesService = rolesService;
         }
 
-        public void Seed()
+        public async Task Seed()
         {
-            InsertRoles();
+            await InsertRoles();
         }
 
         #region private
 
-        private void InsertRoles()
+        private async Task InsertRoles()
         {
-            Constants.RoleTypes.ToList().ForEach((roleType) =>
-            {
-                rolesService.CreateRole(roleType).Wait();
-            });
+            foreach (var roleName in Constants.RolesToSeed)
+                await rolesService.CreateRole(roleName);
         }
 
         #endregion

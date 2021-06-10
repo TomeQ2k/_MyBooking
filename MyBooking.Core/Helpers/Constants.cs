@@ -47,7 +47,7 @@ namespace MyBooking.Core.Helpers
 
         public const string AdminRole = "Admin";
 
-        public static RoleType[] RoleTypes = { RoleType.User, RoleType.Admin };
+        public static RoleType[] RolesToSeed = { RoleType.User, RoleType.Admin };
 
         #endregion
 

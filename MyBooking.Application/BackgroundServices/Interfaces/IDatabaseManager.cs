@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace MyBooking.Application.BackgroundServices.Interfaces
 {
     public interface IDatabaseManager
     {
-        void Seed();
+        Task Seed();
     }
 }

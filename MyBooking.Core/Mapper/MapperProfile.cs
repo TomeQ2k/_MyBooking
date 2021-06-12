@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using AutoMapper;
 using MyBooking.Core.Helpers;
-using MyBooking.Core.Models.Domain;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Entities;
+using MyBooking.Core.Dtos;
 
 namespace MyBooking.Core.Mapper
 {

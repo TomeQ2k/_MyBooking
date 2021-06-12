@@ -1,4 +1,4 @@
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Models;
 
 namespace MyBooking.Application.ViewModels
 {

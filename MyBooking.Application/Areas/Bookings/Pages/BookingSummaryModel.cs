@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyBooking.Application.Pages;
 using MyBooking.Application.Utilities.Extensions;
 using MyBooking.Core.Extensions;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
 using MyBooking.Core.Services;
 
 namespace MyBooking.Application.Areas.Bookings.Pages

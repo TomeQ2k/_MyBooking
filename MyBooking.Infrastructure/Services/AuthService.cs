@@ -2,8 +2,9 @@ using System.Threading.Tasks;
 using MyBooking.Core.Builders;
 using MyBooking.Core.Data;
 using MyBooking.Core.Enums;
-using MyBooking.Core.Models.Domain;
-using MyBooking.Core.Models.Helpers.Result;
+using MyBooking.Core.Entities;
+using MyBooking.Core.Models;
+using MyBooking.Core.Models.Result;
 using MyBooking.Core.Services;
 
 namespace MyBooking.Infrastructure.Services

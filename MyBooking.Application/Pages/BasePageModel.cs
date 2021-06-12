@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MyBooking.Infrastructure.Services;
+using MyBooking.Core.Models;
 
 namespace MyBooking.Application.Pages
 {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using MyBooking.Core.Helpers;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Core.Extensions
 {

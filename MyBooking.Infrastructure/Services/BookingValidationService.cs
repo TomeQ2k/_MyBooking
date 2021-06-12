@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using MyBooking.Core.Data;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 using MyBooking.Core.Services;
 
 namespace MyBooking.Infrastructure.Services

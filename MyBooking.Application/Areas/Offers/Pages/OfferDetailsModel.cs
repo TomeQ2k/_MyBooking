@@ -6,10 +6,10 @@ using MyBooking.Application.Pages;
 using MyBooking.Application.Utilities.Extensions;
 using MyBooking.Core.Enums;
 using MyBooking.Core.Extensions;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
 using MyBooking.Core.Services.ReadOnly;
-using MyBooking.Infrastructure.Services;
 using Serilog;
 
 namespace MyBooking.Application.Areas.Offers.Pages

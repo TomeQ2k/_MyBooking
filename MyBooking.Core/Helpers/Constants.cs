@@ -1,7 +1,7 @@
 using System;
 using MyBooking.Core.Enums;
-using MyBooking.Core.Models.Domain;
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Entities;
+using MyBooking.Core.Models;
 
 namespace MyBooking.Core.Helpers
 {

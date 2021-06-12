@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBooking.Application.Pages;
 using MyBooking.Core.Extensions;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
 using MyBooking.Core.Params;
 using MyBooking.Core.Services.ReadOnly;
 

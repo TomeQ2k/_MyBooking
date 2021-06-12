@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyBooking.Application.Pages;
 using MyBooking.Core.Enums;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
-using MyBooking.Infrastructure.Services;
 
 namespace MyBooking.Application.Areas.Profile.Pages
 {

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
 using MyBooking.Core.Services.ReadOnly;
 using MyBooking.Infrastructure.Email;

@@ -1,7 +1,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
 using MyBooking.Core.Settings;
 using SendGrid;

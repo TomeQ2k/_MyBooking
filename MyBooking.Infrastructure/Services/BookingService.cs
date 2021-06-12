@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MyBooking.Core.Data;
 using MyBooking.Core.Enums;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
 using MyBooking.Core.Services.ReadOnly;
 

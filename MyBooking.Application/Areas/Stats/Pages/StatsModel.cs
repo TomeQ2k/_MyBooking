@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MyBooking.Application.Pages;
 using MyBooking.Core.Enums;
 using MyBooking.Core.Helpers;
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
 
 namespace MyBooking.Application.Areas.Stats.Pages

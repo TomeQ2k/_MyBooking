@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyBooking.Core.Data.Repositories;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Infrastructure.Database.Repositories
 {

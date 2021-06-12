@@ -1,5 +1,5 @@
 using System;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 using MyBooking.Core.Services.FilterServices.Filters;
 
 namespace MyBooking.Infrastructure.Services.FilterServices.Filters.Bookings

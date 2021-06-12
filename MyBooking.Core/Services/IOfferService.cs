@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 using MyBooking.Core.Services.ReadOnly;
 
 namespace MyBooking.Core.Services

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using MyBooking.Application.Pages;
 using MyBooking.Core.Filters;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
 using MyBooking.Core.Services;
 
 namespace MyBooking.Application.Areas.Auth.Pages

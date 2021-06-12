@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MyBooking.Core.Builders;
 using MyBooking.Core.Data;
 using MyBooking.Core.Helpers;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 using MyBooking.Core.Params;
 using MyBooking.Core.Services;
 using MyBooking.Core.SmartEnums;

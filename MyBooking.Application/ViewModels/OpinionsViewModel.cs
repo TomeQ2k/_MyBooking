@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
 
 namespace MyBooking.Application.ViewModels
 {

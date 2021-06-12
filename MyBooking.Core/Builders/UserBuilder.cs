@@ -1,5 +1,5 @@
 using MyBooking.Core.Builders.Interfaces;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Core.Builders
 {

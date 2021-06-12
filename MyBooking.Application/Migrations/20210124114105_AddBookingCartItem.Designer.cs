@@ -21,7 +21,7 @@ namespace MyBooking.Application.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.BookedDate", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.BookedDate", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -51,7 +51,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("BookedDates");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.BookingCartItem", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.BookingCartItem", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -71,7 +71,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("BookingCartItems");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.Offer", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.Offer", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -105,7 +105,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("Offers");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferDetails", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferDetails", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -158,7 +158,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("OfferDetails");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferFollow", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferFollow", b =>
                 {
                     b.Property<string>("OfferId")
                         .HasColumnType("text");
@@ -173,7 +173,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("OfferFollows");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferPhoto", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferPhoto", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -198,7 +198,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("OfferPhotos");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferRate", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferRate", b =>
                 {
                     b.Property<string>("OpinionId")
                         .HasColumnType("text");
@@ -219,7 +219,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("OfferRates");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.Opinion", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.Opinion", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -246,7 +246,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("Opinions");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.Token", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.Token", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -270,7 +270,7 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("Tokens");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.User", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -304,102 +304,102 @@ namespace MyBooking.Application.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.BookedDate", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.BookedDate", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.Offer", "Offer")
+                    b.HasOne("MyBooking.Core.Entities.Offer", "Offer")
                         .WithMany("BookedDates")
                         .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyBooking.Core.Models.Domain.User", "User")
+                    b.HasOne("MyBooking.Core.Entities.User", "User")
                         .WithMany("BookedDates")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.BookingCartItem", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.BookingCartItem", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.BookedDate", "BookedDate")
+                    b.HasOne("MyBooking.Core.Entities.BookedDate", "BookedDate")
                         .WithOne("BookingCartItem")
-                        .HasForeignKey("MyBooking.Core.Models.Domain.BookingCartItem", "BookedDateId")
+                        .HasForeignKey("MyBooking.Core.Entities.BookingCartItem", "BookedDateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.Offer", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.Offer", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.User", "Creator")
+                    b.HasOne("MyBooking.Core.Entities.User", "Creator")
                         .WithMany("Offers")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferDetails", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferDetails", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.Offer", "Offer")
+                    b.HasOne("MyBooking.Core.Entities.Offer", "Offer")
                         .WithOne("OfferDetails")
-                        .HasForeignKey("MyBooking.Core.Models.Domain.OfferDetails", "OfferId")
+                        .HasForeignKey("MyBooking.Core.Entities.OfferDetails", "OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferFollow", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferFollow", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.Offer", "Offer")
+                    b.HasOne("MyBooking.Core.Entities.Offer", "Offer")
                         .WithMany("OfferFollows")
                         .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyBooking.Core.Models.Domain.User", "User")
+                    b.HasOne("MyBooking.Core.Entities.User", "User")
                         .WithMany("OfferFollows")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferPhoto", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferPhoto", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.Offer", "Offer")
+                    b.HasOne("MyBooking.Core.Entities.Offer", "Offer")
                         .WithMany("OfferPhotos")
                         .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.OfferRate", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.OfferRate", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.Opinion", "Opinion")
+                    b.HasOne("MyBooking.Core.Entities.Opinion", "Opinion")
                         .WithOne("OfferRate")
-                        .HasForeignKey("MyBooking.Core.Models.Domain.OfferRate", "OpinionId")
+                        .HasForeignKey("MyBooking.Core.Entities.OfferRate", "OpinionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyBooking.Core.Models.Domain.User", "User")
+                    b.HasOne("MyBooking.Core.Entities.User", "User")
                         .WithMany("OfferRates")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.Opinion", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.Opinion", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.Offer", "Offer")
+                    b.HasOne("MyBooking.Core.Entities.Offer", "Offer")
                         .WithMany("Opinions")
                         .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyBooking.Core.Models.Domain.User", "User")
+                    b.HasOne("MyBooking.Core.Entities.User", "User")
                         .WithMany("Opinions")
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MyBooking.Core.Models.Domain.Token", b =>
+            modelBuilder.Entity("MyBooking.Core.Entities.Token", b =>
                 {
-                    b.HasOne("MyBooking.Core.Models.Domain.User", "User")
+                    b.HasOne("MyBooking.Core.Entities.User", "User")
                         .WithMany("Tokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

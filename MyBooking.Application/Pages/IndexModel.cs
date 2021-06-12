@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
 using MyBooking.Core.Services.ReadOnly;
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Models;
 using MyBooking.Core.Params;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 using MyBooking.Infrastructure.Services.FilterServices.Filters.Offers;
 using System.Threading.Tasks;
 using MyBooking.Core.Services.FilterServices;

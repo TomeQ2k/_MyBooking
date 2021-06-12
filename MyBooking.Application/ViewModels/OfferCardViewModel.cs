@@ -1,4 +1,4 @@
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
 
 namespace MyBooking.Application.ViewModels
 {

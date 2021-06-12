@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using MyBooking.Core.Data.Repositories;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Core.Data
 {

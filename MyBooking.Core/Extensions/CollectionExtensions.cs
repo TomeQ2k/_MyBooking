@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Models;
 
 namespace MyBooking.Core.Extensions
 {

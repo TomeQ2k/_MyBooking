@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Infrastructure.Database.Configs
 {

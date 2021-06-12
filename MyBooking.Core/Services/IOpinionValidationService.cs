@@ -1,4 +1,4 @@
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Core.Services
 {

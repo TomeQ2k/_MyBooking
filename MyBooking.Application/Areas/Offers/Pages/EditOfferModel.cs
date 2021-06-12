@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBooking.Application.Pages;
 using MyBooking.Core.Enums;
-using MyBooking.Core.Models.Domain;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Entities;
+using MyBooking.Core.Dtos;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
-using MyBooking.Infrastructure.Services;
 
 namespace MyBooking.Application.Areas.Offers.Pages
 {

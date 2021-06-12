@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ardalis.SmartEnum;
 using MyBooking.Core.Enums;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 
 namespace MyBooking.Core.SmartEnums
 {

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MyBooking.Core.Models.Domain;
+using MyBooking.Core.Entities;
 using MyBooking.Infrastructure.Database.Configs;
 
 namespace MyBooking.Infrastructure.Database

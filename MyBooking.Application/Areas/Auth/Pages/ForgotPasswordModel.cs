@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using MyBooking.Application.Pages;
 using MyBooking.Core.Enums;
 using MyBooking.Core.Helpers;
-using MyBooking.Core.Models.Dtos;
+using MyBooking.Core.Dtos;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
-using MyBooking.Infrastructure.Services;
 
 namespace MyBooking.Application.Areas.Auth.Pages
 {

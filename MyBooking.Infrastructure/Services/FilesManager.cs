@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using MyBooking.Core.Helpers;
-using MyBooking.Core.Models.Helpers;
+using MyBooking.Core.Models;
 using MyBooking.Core.Services;
 
 namespace MyBooking.Infrastructure.Services

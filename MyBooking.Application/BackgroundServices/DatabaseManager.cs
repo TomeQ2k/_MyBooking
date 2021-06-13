@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using MyBooking.Application.BackgroundServices.Interfaces;
 using MyBooking.Core.Helpers;
 using MyBooking.Core.Services;
+using Serilog;
 
 namespace MyBooking.Application.BackgroundServices
 {
@@ -17,6 +18,8 @@ namespace MyBooking.Application.BackgroundServices
         public async Task Seed()
         {
             await InsertRoles();
+
+            Log.Information("Database seed completed");
         }
 
         #region private

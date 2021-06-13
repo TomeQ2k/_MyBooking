@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using MyBooking.Application.AppConfigs;
 using MyBooking.Core.Helpers;
 using MyBooking.Core.Mapper;
-using Serilog;
 
 namespace MyBooking.Application
 {
@@ -68,7 +67,7 @@ namespace MyBooking.Application
 
             app.UseStaticFiles();
 
-            app.UseSerilogRequestLogging();
+            app.ConfigureLogging();
 
             app.UseRouting();
 

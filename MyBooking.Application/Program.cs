@@ -39,10 +39,12 @@ namespace MyBooking.Application
                     var context = services.GetRequiredService<DataContext>();
                     var databaseManager = services.GetRequiredService<IDatabaseManager>();
 
-                    context.Database.Migrate();
+                    await context.Database.MigrateAsync();
+                    Log.Information("Database migration completed");
 
                     await databaseManager.Seed();
-                    Log.Information("Database seed completed");
+
+                    Log.Information("Application initialized");
 
                     host.Run();
                 }

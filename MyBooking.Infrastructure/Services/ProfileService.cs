@@ -22,7 +22,7 @@ namespace MyBooking.Infrastructure.Services
             this.httpContextReader = httpContextReader;
         }
 
-        public async Task<User> GetCurrentUser() => await database.UserRepository.Get(httpContextReader.CurrentUserId);
+        public async Task<User> GetCurrentUser() => await database.UserRepository.FindById(httpContextReader.CurrentUserId);
 
         public async Task<User> ChangeUsername(string newUsername)
         {

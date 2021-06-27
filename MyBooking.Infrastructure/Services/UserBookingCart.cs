@@ -19,7 +19,7 @@ namespace MyBooking.Infrastructure.Services
             if (CurrentUserId == null)
                 return null;
 
-            var userBookingCartItems = (await database.BookingCartItemRepository.Filter(b => b.UserId == CurrentUserId)).ToList();
+            var userBookingCartItems = (await database.BookingCartItemRepository.GetWhere(b => b.UserId == CurrentUserId)).ToList();
             userBookingCartItems.ForEach(b => b.SetBookingCartId(CartId));
 
             await database.Complete();

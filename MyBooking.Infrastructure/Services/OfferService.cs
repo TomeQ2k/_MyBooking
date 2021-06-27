@@ -30,14 +30,14 @@ namespace MyBooking.Infrastructure.Services
             this.offerFilters = offerFilters;
         }
 
-        public async Task<Offer> GetOffer(string id) => await database.OfferRepository.Get(id);
+        public async Task<Offer> GetOffer(string id) => await database.OfferRepository.FindById(id);
 
         public async Task<IEnumerable<Offer>> GetOffers()
-            => (await database.OfferRepository.Fetch())
+            => (await database.OfferRepository.GetAll())
                 .OrderByDescending(o => o.DateCreated);
 
         public async Task<IEnumerable<Offer>> GetUserOffers(string creatorId)
-            => (await database.OfferRepository.Filter(o => o.CreatorId == creatorId))
+            => (await database.OfferRepository.GetWhere(o => o.CreatorId == creatorId))
                 .OrderBy(o => o.DateCreated);
 
         public async Task<bool> CreateOffer(Offer offer, IEnumerable<IFormFile> offerPhotos)
@@ -100,7 +100,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> DeleteOffer(string offerId)
         {
-            var offer = await database.OfferRepository.Get(offerId);
+            var offer = await database.OfferRepository.FindById(offerId);
 
             if (offer == null)
                 return false;
@@ -125,7 +125,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> RemovePhoto(string photoId)
         {
-            var photo = await database.OfferPhotoRepository.Get(photoId);
+            var photo = await database.OfferPhotoRepository.FindById(photoId);
 
             if (photo == null)
                 return false;

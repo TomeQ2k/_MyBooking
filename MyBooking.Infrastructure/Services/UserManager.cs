@@ -16,7 +16,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> ClearNotConfirmedUsers()
         {
-            var usersToDelete = await database.UserRepository.Filter(u => !u.EmailConfirmed && u.DateRegistered.AddDays(1) < DateTime.Now);
+            var usersToDelete = await database.UserRepository.GetWhere(u => !u.EmailConfirmed && u.DateRegistered.AddDays(1) < DateTime.Now);
 
             database.UserRepository.DeleteRange(usersToDelete);
 

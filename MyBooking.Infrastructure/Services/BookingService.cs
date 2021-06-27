@@ -24,14 +24,14 @@ namespace MyBooking.Infrastructure.Services
         }
 
         public async Task<BookedDate> GetBookedDate(string bookedDateId)
-            => await database.BookedDateRepository.Get(bookedDateId);
+            => await database.BookedDateRepository.FindById(bookedDateId);
 
         public async Task<IEnumerable<BookedDate>> GetBookedDates(string currentUserId)
-            => await database.BookedDateRepository.Filter(bd => (bd.UserId == currentUserId && bd.Offer.CreatorId != currentUserId) || bd.Offer.CreatorId == currentUserId);
+            => await database.BookedDateRepository.GetWhere(bd => (bd.UserId == currentUserId && bd.Offer.CreatorId != currentUserId) || bd.Offer.CreatorId == currentUserId);
 
         public async Task<BookedDate> BookDate(DateTime startDate, DateTime endDate, string offerId)
         {
-            var offer = await database.OfferRepository.Get(offerId);
+            var offer = await database.OfferRepository.FindById(offerId);
 
             if (offer == null)
                 return null;

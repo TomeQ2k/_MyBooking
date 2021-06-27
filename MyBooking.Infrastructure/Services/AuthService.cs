@@ -85,7 +85,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> ConfirmAccount(string userId, string code)
         {
-            var user = await database.UserRepository.Get(userId);
+            var user = await database.UserRepository.FindById(userId);
             var registerToken = await database.TokenRepository.Find(t => t.Code == code && t.TokenType == TokenType.Register);
 
             if (user == null || registerToken == null)

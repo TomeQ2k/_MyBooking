@@ -18,7 +18,7 @@ namespace MyBooking.Infrastructure.Services.FilterServices
             if (!filterParams.FilterEnabled)
                 return null;
 
-            var offers = await database.OfferRepository.Fetch();
+            var offers = await database.OfferRepository.GetAll();
 
             offers = filtersDictionary.RunFilters(offers);
 

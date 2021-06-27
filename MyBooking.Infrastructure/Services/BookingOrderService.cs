@@ -24,7 +24,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<IEnumerable<BookingOrder>> FetchOrders(string currentUserId, BookingOrdersFilterParams filterParams)
         {
-            var orders = await database.BookingOrderRepository.Filter(o => o.OrderDetails.Booking.UserId == currentUserId);
+            var orders = await database.BookingOrderRepository.GetWhere(o => o.OrderDetails.Booking.UserId == currentUserId);
 
             orders = BookingTypeSmartEnum.FromValue((int)filterParams.Type).FilterOrders(orders, currentUserId);
 
@@ -35,7 +35,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<BookingOrder> PurchaseOrder(string cartId)
         {
-            var cartItems = await database.BookingCartItemRepository.Filter(b => b.BookingCartId == cartId);
+            var cartItems = await database.BookingCartItemRepository.GetWhere(b => b.BookingCartId == cartId);
 
             var firstCartItem = cartItems.FirstOrDefault();
 

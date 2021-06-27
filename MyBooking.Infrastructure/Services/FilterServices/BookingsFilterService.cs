@@ -18,7 +18,7 @@ namespace MyBooking.Infrastructure.Services.FilterServices
             if (!filterParams.FilterEnabled)
                 return null;
 
-            var bookings = await database.BookedDateRepository.Filter(bd => bd.UserId == currentUserId || bd.Offer.CreatorId == currentUserId);
+            var bookings = await database.BookedDateRepository.GetWhere(bd => bd.UserId == currentUserId || bd.Offer.CreatorId == currentUserId);
 
             bookings = filtersDictionary.RunFilters(bookings);
 

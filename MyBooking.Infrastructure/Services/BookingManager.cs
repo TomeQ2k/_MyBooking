@@ -15,7 +15,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> ClearNotConfirmedBookings()
         {
-            var bookingsToDelete = await database.BookedDateRepository.Filter(bd => !bd.IsConfirmed);
+            var bookingsToDelete = await database.BookedDateRepository.GetWhere(bd => !bd.IsConfirmed);
 
             database.BookedDateRepository.DeleteRange(bookingsToDelete);
 

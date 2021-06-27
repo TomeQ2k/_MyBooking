@@ -17,30 +17,30 @@ namespace MyBooking.Infrastructure.Services
         }
 
         public async Task<int> GetBookingsCount()
-            => (await database.BookedDateRepository.Filter(bd => bd.EndDate >= DateTime.Now.AddMonths(Constants.Minus) && bd.IsConfirmed)).Count();
+            => (await database.BookedDateRepository.GetWhere(bd => bd.EndDate >= DateTime.Now.AddMonths(Constants.Minus) && bd.IsConfirmed)).Count();
 
         public async Task<int> GetBookingOrdersCount()
-            => (await database.BookingOrderRepository.Filter(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus))).Count();
+            => (await database.BookingOrderRepository.GetWhere(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus))).Count();
 
         public async Task<int> GetOffersCount()
-            => (await database.OfferRepository.Filter(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus))).Count();
+            => (await database.OfferRepository.GetWhere(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus))).Count();
 
         public async Task<int> GetCreatedAccountsCount()
-            => (await database.UserRepository.Filter(u => u.DateRegistered >= DateTime.Now.AddMonths(Constants.Minus) && u.EmailConfirmed)).Count();
+            => (await database.UserRepository.GetWhere(u => u.DateRegistered >= DateTime.Now.AddMonths(Constants.Minus) && u.EmailConfirmed)).Count();
 
         public async Task<decimal> GetTotalMoneyEarned()
-            => (await database.BookingOrderRepository.Filter(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus)))
+            => (await database.BookingOrderRepository.GetWhere(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus)))
                 .Select(o => o.TotalPrice)
                 .Sum();
 
         public async Task<int> GetTotalCountInOffers()
-            => (await database.OfferRepository.Filter(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus)))
+            => (await database.OfferRepository.GetWhere(o => o.DateCreated >= DateTime.Now.AddMonths(Constants.Minus)))
                 .Select(o => o.TotalCount)
                 .Sum();
 
         public async Task<double> GetAverageOffersCountPerUser()
         {
-            var users = await database.UserRepository.Filter(u => u.DateRegistered >= DateTime.Now.AddMonths(Constants.Minus) && u.EmailConfirmed);
+            var users = await database.UserRepository.GetWhere(u => u.DateRegistered >= DateTime.Now.AddMonths(Constants.Minus) && u.EmailConfirmed);
 
             return (double)users.Select(u => u.Offers.Count).Sum() / users.Count();
         }

@@ -12,6 +12,6 @@ namespace MyBooking.Infrastructure.Services
         public SessionBookingCart(IDatabase database) : base(database) { }
 
         public async Task<List<BookingCartItem>> GetSessionBookingCartItems()
-            => BookingCartItems ?? (BookingCartItems = (await database.BookingCartItemRepository.Filter(b => b.BookingCartId == CartId)).ToList());
+            => BookingCartItems ?? (BookingCartItems = (await database.BookingCartItemRepository.GetWhere(b => b.BookingCartId == CartId)).ToList());
     }
 }

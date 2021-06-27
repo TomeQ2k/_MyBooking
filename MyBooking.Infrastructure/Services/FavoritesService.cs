@@ -29,7 +29,7 @@ namespace MyBooking.Infrastructure.Services
             if (currentUser == null)
                 return false;
 
-            var offer = await database.OfferRepository.Get(offerId);
+            var offer = await database.OfferRepository.FindById(offerId);
 
             if (offer == null)
                 return false;

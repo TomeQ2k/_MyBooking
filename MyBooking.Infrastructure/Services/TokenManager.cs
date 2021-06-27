@@ -17,7 +17,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> ClearExpiredTokens()
         {
-            var tokensToDelete = await database.TokenRepository.Filter(t => t.DateCreated.AddDays(Constants.TokenExpirationTimeInDays) < DateTime.Now);
+            var tokensToDelete = await database.TokenRepository.GetWhere(t => t.DateCreated.AddDays(Constants.TokenExpirationTimeInDays) < DateTime.Now);
 
             database.TokenRepository.DeleteRange(tokensToDelete);
 

@@ -34,7 +34,7 @@ namespace MyBooking.Infrastructure.Services
                 return null;
             }
 
-            var offer = await database.OfferRepository.Get(offerId);
+            var offer = await database.OfferRepository.FindById(offerId);
 
             if (offer == null)
                 return null;

@@ -21,7 +21,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> ResetPassword(string userId, string code, string newPassword)
         {
-            var user = await database.UserRepository.Get(userId);
+            var user = await database.UserRepository.FindById(userId);
 
             if (user == null)
                 return false;
@@ -66,7 +66,7 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> VerifyResetPasswordToken(string userId, string code)
         {
-            var user = await database.UserRepository.Get(userId);
+            var user = await database.UserRepository.FindById(userId);
 
             if (user == null)
                 return false;

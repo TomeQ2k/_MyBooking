@@ -72,7 +72,7 @@ namespace MyBooking.Infrastructure.Services
 
                 database.TokenRepository.Add(registerToken);
 
-                rolesService.AdmitRole(await rolesService.GetRoleId(RoleType.User), user);
+                await rolesService.AdmitRole(RoleType.User, user);
 
                 if (await database.Complete())
                     return new SignUpResult(registerToken.Code, user);

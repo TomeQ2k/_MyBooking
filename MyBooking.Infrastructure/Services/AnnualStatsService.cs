@@ -41,8 +41,9 @@ namespace MyBooking.Infrastructure.Services
         public async Task<double> GetAverageOffersCountPerUser()
         {
             var users = await database.UserRepository.GetWhere(u => u.DateRegistered >= DateTime.Now.AddYears(Constants.Minus) && u.EmailConfirmed);
+            int usersCount = users.Count();
 
-            return (double)users.Select(u => u.Offers.Count).Sum() / users.Count();
+            return usersCount != 0 ? (double)users.Select(u => u.Offers.Count).Sum() / usersCount : 0;
         }
     }
 }

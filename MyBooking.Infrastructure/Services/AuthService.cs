@@ -13,11 +13,13 @@ namespace MyBooking.Infrastructure.Services
     {
         private readonly IDatabase database;
         private readonly IHashGenerator hashGenerator;
+        private readonly IRolesService rolesService;
 
-        public AuthService(IDatabase database, IHashGenerator hashGenerator)
+        public AuthService(IDatabase database, IHashGenerator hashGenerator, IRolesService rolesService)
         {
             this.database = database;
             this.hashGenerator = hashGenerator;
+            this.rolesService = rolesService;
         }
 
         public async Task<User> SignIn(string email, string password)
@@ -70,7 +72,7 @@ namespace MyBooking.Infrastructure.Services
 
                 database.TokenRepository.Add(registerToken);
 
-                //Logic adding user to USER role
+                rolesService.AdmitRole(await rolesService.GetRoleId(RoleType.User), user);
 
                 if (await database.Complete())
                     return new SignUpResult(registerToken.Code, user);

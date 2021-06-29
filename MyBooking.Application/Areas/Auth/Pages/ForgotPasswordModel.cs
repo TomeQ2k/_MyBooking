@@ -43,7 +43,7 @@ namespace MyBooking.Application.Areas.Auth.Pages
             }
 
             var emailSent = await emailSender.Send(Constants.ResetPasswordEmail(sendResetPasswordResult.Email, sendResetPasswordResult.Username,
-                    $"{Configuration.GetValue<string>(AppSettingsKeys.ServerAddress)}Auth/ResetPassword?userId={sendResetPasswordResult.UserId}&code={sendResetPasswordResult.Code}"));
+                    $"{Configuration.GetValue<string>(AppSettingsKeys.ServerAddress)}/Auth/ResetPassword?userId={sendResetPasswordResult.UserId}&code={sendResetPasswordResult.Code}"));
 
             if (emailSent)
             {

@@ -55,7 +55,7 @@ namespace MyBooking.Application.Areas.Auth.Pages
             if (authResult != null)
             {
                 var emailSent = await emailSender.Send(Constants.ActivationAccountEmail(UserRegister.Email,
-                     $"{Configuration.GetValue<string>(AppSettingsKeys.ServerAddress)}Auth/ConfirmAccount?userId={authResult.User.Id}&code={authResult.Token}"));
+                     $"{Configuration.GetValue<string>(AppSettingsKeys.ServerAddress)}/Auth/ConfirmAccount?userId={authResult.User.Id}&code={authResult.Token}"));
 
                 if (emailSent)
                 {

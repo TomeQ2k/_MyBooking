@@ -46,6 +46,7 @@ namespace MyBooking.Application.AppConfigs
             services.AddScoped<IReadOnlyBookingService, BookingService>();
             services.AddScoped<IReadOnlyFavoritesService, FavoritesService>();
             services.AddScoped<IReadOnlyBookingOrderService, BookingOrderService>();
+            services.AddScoped<IReadOnlyRolesService, RolesService>();
 
             services.AddScoped<IOffersFilterService, OffersFilterService>();
             services.AddScoped<IBookingsFilterService, BookingsFilterService>();

@@ -3,6 +3,8 @@ using MyBooking.Core.Data;
 using MyBooking.Core.Enums;
 using MyBooking.Core.Entities;
 using MyBooking.Core.Services;
+using System.Linq;
+using MyBooking.Core.Helpers;
 
 namespace MyBooking.Infrastructure.Services
 {
@@ -13,6 +15,31 @@ namespace MyBooking.Infrastructure.Services
         public RolesService(IDatabase database)
         {
             this.database = database;
+        }
+
+        public bool AdmitRole(string roleId, User user)
+        {
+            if (user.UserRoles.Any(ur => ur.RoleId == roleId))
+                return false;
+
+            user.UserRoles.Add(UserRole.Create(user.Id, roleId));
+
+            return true;
+        }
+
+        public bool RevokeRole(string roleId, User user)
+        {
+            var userRole = user.UserRoles.FirstOrDefault(ur => ur.RoleId == roleId);
+
+            if (userRole == null)
+                return false;
+
+            if (userRole.Role.RoleName == Utils.EnumToString<RoleType>(RoleType.User))
+                return false;
+
+            user.UserRoles.Remove(userRole);
+
+            return true;
         }
 
         public async Task<bool> CreateRole(RoleType roleType)
@@ -32,5 +59,8 @@ namespace MyBooking.Infrastructure.Services
 
         public async Task<bool> RoleExists(RoleType roleType)
             => await database.RoleRepository.Find(r => r.RoleType == roleType) != null;
+
+        public async Task<string> GetRoleId(RoleType roleType)
+            => (await database.RoleRepository.Find(r => r.RoleName.ToLower() == Utils.EnumToString<RoleType>(roleType).ToLower()))?.Id;
     }
 }

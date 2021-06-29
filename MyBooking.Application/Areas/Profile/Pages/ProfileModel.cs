@@ -102,7 +102,7 @@ namespace MyBooking.Application.Areas.Profile.Pages
             if (generateChangeEmailTokenResult != null)
             {
                 var emailSent = await emailSender.Send(Constants.EmailChangeEmail(changeEmailInput.NewEmail,
-                    $"{Configuration.GetValue<string>(AppSettingsKeys.ServerAddress)}" +
+                    $"{Configuration.GetValue<string>(AppSettingsKeys.ServerAddress)}/" +
                     $"Profile/ChangeEmail?userId={generateChangeEmailTokenResult.UserId}&code={generateChangeEmailTokenResult.Code}&newEmail={generateChangeEmailTokenResult.NewEmail}"));
 
                 if (emailSent)

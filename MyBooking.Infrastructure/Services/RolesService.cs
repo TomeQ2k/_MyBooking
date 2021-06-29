@@ -18,16 +18,7 @@ namespace MyBooking.Infrastructure.Services
         }
 
         public async Task<bool> AdmitRole(RoleType roleType, User user)
-        {
-            var roleId = await GetRoleId(roleType);
-
-            if (user.UserRoles.Any(ur => ur.RoleId == roleId))
-                return false;
-
-            user.UserRoles.Add(UserRole.Create(user.Id, roleId));
-
-            return true;
-        }
+            => AdmitRole(await GetRoleId(roleType), user);
 
         public bool AdmitRole(string roleId, User user)
         {
@@ -40,21 +31,7 @@ namespace MyBooking.Infrastructure.Services
         }
 
         public async Task<bool> RevokeRole(RoleType roleType, User user)
-        {
-            var roleId = await GetRoleId(roleType);
-
-            var userRole = user.UserRoles.FirstOrDefault(ur => ur.RoleId == roleId);
-
-            if (userRole == null)
-                return false;
-
-            if (userRole.Role.RoleName == Utils.EnumToString<RoleType>(RoleType.User))
-                return false;
-
-            user.UserRoles.Remove(userRole);
-
-            return true;
-        }
+            => RevokeRole(await GetRoleId(roleType), user);
 
         public bool RevokeRole(string roleId, User user)
         {
